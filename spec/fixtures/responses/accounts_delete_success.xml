@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Body>
+        <ns1:deleteResponse xmlns:ns1="http://api.zuora.com/">
+            <ns1:result>
+                <ns1:id>2c92c0f83d60e055013d859f7f4873ee</ns1:id>
+                <ns1:success>true</ns1:success>
+            </ns1:result>
+            <ns1:result>
+                <ns1:id>2c92c0f83d60e055013d859f7f2f73ec</ns1:id>
+                <ns1:success>true</ns1:success>
+            </ns1:result>
+        </ns1:deleteResponse>
+    </soapenv:Body>
+</soapenv:Envelope>
