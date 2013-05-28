@@ -1,7 +1,6 @@
 module Zuora
   class SoapConnector
     attr_reader :model
-    attr_reader :models
     delegate :ons, :zns, :remote_name, :id, :to => :model
 
     def initialize(model)

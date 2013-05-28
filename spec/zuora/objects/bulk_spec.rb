@@ -29,6 +29,54 @@ describe Zuora::Objects::Bulk do
 			end
 		end
 	end
+
+	it "should write failures to the base errors" do 
+		MockResponse.responds_with(:accounts_create_failure) do
+			acc = Zuora::Objects::Account.new
+			acc2 = Zuora::Objects::Account.new
+			acc_array = Array.new
+			acc_array << acc
+			acc_array << acc2
+
+			subject.setup(acc_array)
+
+			resp = subject.create
+			#response should all be true
+			resp.each do |res|
+				res[:success].should be_false
+			end
+			#ids should be set
+			subject.objects.each do |o|
+				o.errors.should_not be_empty
+			end
+		end
+	end
+
+	it "should be able to delete multiple remote objects" do
+		MockResponse.responds_with(:accounts_create_success) do
+			acc = Zuora::Objects::Account.new
+			acc.name = "test"
+			acc2 = Zuora::Objects::Account.new
+			acc2.name = "test2"
+			acc_array = Array.new
+			acc_array << acc
+			acc_array << acc2
+
+			subject.setup(acc_array)
+
+			resp = subject.create
+		end
+		 
+		MockResponse.responds_with(:accounts_delete_success) do 
+			resp = subject.destroy
+			puts 
+			puts
+			puts resp
+			resp.each do |res|
+				res[:success].should be_true
+			end
+		end
+	end
 	
 	#describe "should be able to create objects in bulk" do
 	#	before do

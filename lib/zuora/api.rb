@@ -13,9 +13,14 @@ module Zuora
     Api.instance.config = Config.new(opts)
     HTTPI.logger = opts[:logger]
     HTTPI.log = opts[:logger] ? true : false
-    Savon.configure do |savon|
-      savon.logger = opts[:logger]
-      savon.log = opts[:logger] ? true : false
+    #Savon.configure do |savon|
+      #savon.logger = opts[:logger]
+      #savon.log = opts[:logger] ? true : false
+    #end
+    
+    if opts[:logger]
+      Savon.client(log: opts[:logger])
+      Savon.client(logger: Rails.logger)
     end
 
     if Api.instance.config.sandbox
@@ -88,7 +93,7 @@ module Zuora
     # @raise [Zuora::Fault]
     def authenticate!
       response = client.request(:login) do
-        ns = Zuora::Api.instance.client.soap.namespace_by_uri('http://api.zuora.com/')
+        ns = soap.namespace_by_uri('http://api.zuora.com/')
         soap.body = "<#{ns}:username>#{Zuora::Api.instance.config.username}</#{ns}:username><#{ns}:password>#{Zuora::Api.instance.config.password}</#{ns}:password>"
       end
       self.session = Zuora::Session.generate(response.to_hash)
@@ -99,15 +104,15 @@ module Zuora
     private
 
     def initialize
-      Savon.configure do |savon|
-        savon.soap_version = 2
-      end
+      make_client
+      #Savon.configure do |savon|
+       # savon.soap_version = 2
+      #end
     end
 
     def make_client
-      Savon::Client.new do
-        wsdl.document = WSDL
-        http.auth.ssl.verify_mode = :none
+      client = Savon.client do
+        wsdl WSDL
       end
     end
 
