@@ -56,7 +56,7 @@ module Zuora
     end
 
     # Change client to production url
-    def sandbox!
+    def prod!
       @client = nil
       self.class.instance.client.wsdl.endpoint = "https://www.zuora.com/apps/services/a/47.1"
     end
