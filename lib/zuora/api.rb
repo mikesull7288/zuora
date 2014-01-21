@@ -21,6 +21,10 @@ module Zuora
     if Api.instance.config.sandbox
       Api.instance.sandbox!
     end
+
+    if !Api.instance.config.sandbox
+      Api.instance.prod!
+    end
   end
 
   class Api
@@ -49,6 +53,12 @@ module Zuora
     def sandbox!
       @client = nil
       self.class.instance.client.wsdl.endpoint = "https://apisandbox.zuora.com/apps/services/a/47.1"
+    end
+
+    # Change client to production url
+    def sandbox!
+      @client = nil
+      self.class.instance.client.wsdl.endpoint = "https://www.zuora.com/apps/services/a/47.1"
     end
 
     # The XML that was transmited in the last request
