@@ -445,7 +445,6 @@
 							<element minOccurs="0" name="BankStreetName" nillable="true" type="string" />
 							<element minOccurs="0" name="BankStreetNumber" nillable="true" type="string" />
 							<element minOccurs="0" name="BankTransferAccountName" nillable="true" type="string" />
-               				<element minOccurs="0" name="BankTransferAccountNumber" nillable="true" type="string" />
                				<element minOccurs="0" name="BankTransferAccountNumberMask" nillable="true" type="string" />
 			               	<element minOccurs="0" name="BankTransferAccountType" nillable="true" type="string" />
 			               	<element minOccurs="0" name="BankTransferType" nillable="true" type="string" />
