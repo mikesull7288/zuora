@@ -50,7 +50,7 @@ module Zuora::Objects
         :total_number_of_error_payments, :total_number_of_processed_payments, :active,
         :bank_city, :bank_code, :bank_name, :bank_postal_code, :bank_street_name,
         :bank_street_number, :bank_transfer_account_name, :bank_transfer_account_number,
-        :bank_transfer_account_type, :bank_transfer_account_number, :bank_transfer_account_type,
+        :bank_transfer_account_type, 
         :bank_transfer_type, :last_transaction_datetime, :payment_method_status
 
       write_only :ach_account_number, :credit_card_number, :credit_card_security_code,
