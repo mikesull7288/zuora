@@ -554,6 +554,7 @@
 							<element minOccurs="0" name="EffectiveStartDate" nillable="true" type="dateTime" />
 							<element minOccurs="0" name="Name" nillable="true" type="string" />
 							<element minOccurs="0" name="ProductId" nillable="true" type="zns:ID" />
+				                        <element minOccurs="0" name="SelfSignupPrice__c" nillable="true" type="string" />
                				<element minOccurs="0" name="UpdatedById" nillable="true" type="zns:ID"  />
                				<element minOccurs="0" name="UpdatedDate" nillable="true" type="dateTime"  />
 						</sequence>
